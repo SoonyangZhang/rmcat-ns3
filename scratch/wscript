@@ -1,0 +1,9 @@
+## -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+def build(bld):
+    #obj = bld.create_ns3_program('webrtc-tcp' ['application','core','internet','network','webrtc-ns3','mytrace','traffic-control'])
+    #obj.source = 'webrtc-tcp.cc'
+    #obj = bld.create_ns3_program('nada' ['application','core','internet','network','ns3-rmcat','mytrace','traffic-control'])
+    #obj.source = 'nada.cc'
+    obj = bld.create_ns3_program('screamex' ['application','core','internet','network','scream','mytrace','traffic-control'])
+    obj.source = 'screamex.cc'

@@ -1,0 +1,33 @@
+# -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+###############################################################################
+#  Copyright 2016-2017 Cisco Systems, Inc.                                    #
+#                                                                             #
+#  Licensed under the Apache License, Version 2.0 (the "License");            #
+#  you may not use this file except in compliance with the License.           #
+#                                                                             #
+#  You may obtain a copy of the License at                                    #
+#                                                                             #
+#      http://www.apache.org/licenses/LICENSE-2.0                             #
+#                                                                             #
+#  Unless required by applicable law or agreed to in writing, software        #
+#  distributed under the License is distributed on an "AS IS" BASIS,          #
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   #
+#  See the License for the specific language governing permissions and        #
+#  limitations under the License.                                             #
+###############################################################################
+
+def build(bld):
+    module = bld.create_ns3_module('mytrace', ['core'])
+    module.source = [
+        'model/mytrace.cc',
+        ]
+
+    module.defines = ['NS3_ASSERT_ENABLE', 'NS3_LOG_ENABLE']
+    module.cxxflags = ['-std=c++11', '-g']
+    headers = bld(features='ns3header')
+    headers.module = 'mytrace'
+    headers.source = [
+        'model/mytrace.h',
+       ]
+
