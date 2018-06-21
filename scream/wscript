@@ -1,0 +1,23 @@
+# -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+def build(bld):
+    module = bld.create_ns3_module('scream', ['network'])
+    module.source = [
+	'model/scream-header.cc',
+	'model/screamsender.cc',
+	'model/screamreceiver.cc',
+	'model/rtpqueue.cc',
+	'model/screamRx.cc',
+	'model/screamTx.cc',
+	'model/videoenc.cc',
+	]
+    headers = bld(features='ns3header')
+    headers.module = 'scream'
+    headers.source = [
+	'model/scream-header.h',	
+	'model/screamsender.h',
+	'model/screamreceiver.h',
+	'model/rtpqueue.h',
+	'model/screamRx.h',
+	'model/screamTx.h',
+	'model/videoenc.h',
+	]
