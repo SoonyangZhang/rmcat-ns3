@@ -8,7 +8,9 @@ the code in screamex.cc sendApp->SetTraceFilePath("/you_path/trace_key.txt"),is 
 the mytrace module is used for data collecion. And a file named "trace" should be created first under the  path of ns-allinone-3.26/ns-3.26/  
 
 the razor project is a c version of GCC release at https://github.com/yuanrongxi/razor. And I make some minor modification to get it running on ns3.  
+
 ![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/razor-example/gcc_razor_0remb.png)
-![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/razor-example/gcc_razor_1remb.png)
+![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/razor-example/gcc_razor_1remb.png)  
+
 Its the success importation of razor project on ns3 encourages me get the original GCC in webrtc running on ns3.
 
