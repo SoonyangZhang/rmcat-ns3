@@ -1,0 +1,68 @@
+# -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+# def options(opt):
+#     pass
+
+# def configure(conf):
+#     conf.check_nonfatal(header_name='stdint.h', define_name='HAVE_STDINT_H')
+#system_wrappers rtc_base api  logging  utility pacing
+def configure(conf):
+  #libs_check = ['/home/zsy/ffmpeg-0.8.5/libavformat/','/home/zsy/ffmpeg-0.8.5/libavcodec/','/home/zsy/ffmpeg-0.8.5/libavutil/']
+  #conf.env.LIBPATH_LIBNAME = libs_check
+  conf.env.append_value("CXXFLAGS", ["-ggdb", "-g3", "-O0", "-D__STDC_CONSTANT_MACROS -DWEBRTC_POSIX -DWEBRTC_LINUX"])
+  conf.env.append_value('INCLUDES', ['/home/zsy/webrtc-ns3/webrtc/'])
+  conf.env.append_value("CFLAGS", ["-ggdb", "-g3", "-O0", "-D__STDC_CONSTANT_MACROS -DWEBRTC_POSIX -DWEBRTC_LINUX"])
+  #conf.env.append_value("LINKFLAGS", ["-lsystem_wrappers","-lrtc_base", "-lapi", "-llogging","-lutility","-lpacing"])
+  conf.env.append_value("LINKFLAGS", ['-L/home/zsy/webrtc-ns3/webrtc/system_wrappers','-L/home/zsy/webrtc-ns3/webrtc/rtc_base','-L/home/zsy/webrtc-ns3/webrtc/api','-L/home/zsy/webrtc-ns3/webrtc/logging','-L/home/zsy/webrtc-ns3/webrtc/modules/utility','-L/home/zsy/webrtc-ns3/webrtc/modules/pacing','-L/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller','-L/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller','-L/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator','-L/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp'])
+  conf.env['librtc_base']= conf.check(mandatory=True, lib='rtc_base', uselib_store='librtc_base')
+  conf.env['libpacing']= conf.check(mandatory=True, lib='pacing', uselib_store='libpacing')
+  conf.env['libsystem_wrappers']= conf.check(mandatory=True, lib='system_wrappers', uselib_store='libsystem_wrappers')
+  conf.env['libapi']= conf.check(mandatory=True, lib='api', uselib_store='libapi')
+  conf.env['liblogging']= conf.check(mandatory=True, lib='logging', uselib_store='liblogging')
+  conf.env['libutility']= conf.check(mandatory=True, lib='utility', uselib_store='libutility')
+  conf.env['libcongestion_controller']= conf.check(mandatory=True, lib='congestion_controller', uselib_store='libcongestion_controller')
+  conf.env['libbitrate_controller']= conf.check(mandatory=True, lib='bitrate_controller', uselib_store='libbitrate_controller')
+  conf.env['libremote_bitrate_estimator']= conf.check(mandatory=True, lib='remote_bitrate_estimator', uselib_store='libremote_bitrate_estimator')
+  conf.env['librtp_rtcp_format']= conf.check(mandatory=True, lib='rtp_rtcp_format', uselib_store='librtp_rtcp_format')
+  #conf.env.append_value("STATICLIB",["system_wrappers","rtc_base","api","logging","utility","pacing"])
+  #conf.env.append_value("LIB", ["system_wrappers","rtc_base","api","logging","utility","pacing"])
+def build(bld):
+    webrtc= bld.create_ns3_module('webrtc-ns3', ['core','multipathvideo','internet','network'])
+    webrtc.source = [
+        'model/packetgenerator.cc',
+	'model/processmodule.cc',
+	'model/simulationclock.cc',
+	'model/webrtcsender.cc',
+	'model/webrtcheader.cc',
+        'model/webrtcreceiver.cc',
+        'model/webrtclog.cc',
+	]
+    headers = bld(features='ns3header')
+    headers.module = 'webrtc-ns3'
+    headers.source = [
+        'model/packetgenerator.h',
+	'model/processmodule.h',
+	'model/simulationclock.h',
+	'model/gclock.h',
+	'model/target.h',
+	'model/webrtcsender.h',
+	'model/webrtcheader.h',
+	'model/webrtcreceiver.h',
+	'model/webrtclog.h',
+	'model/webrtcconstants.h',
+	]
+    webrtc.env.append_value("CCFLAGS", ["-I/home/zsy/webrtc-ns3/webrtc"]) 
+    webrtc.env.append_value("LINKFLAGS",['-L/home/zsy/webrtc-ns3/webrtc/system_wrappers','-L/home/zsy/webrtc-ns3/webrtc/rtc_base','-L/home/zsy/webrtc-ns3/webrtc/api','-L/home/zsy/webrtc-ns3/webrtc/logging','-L/home/zsy/webrtc-ns3/webrtc/modules/utility','-L/home/zsy/webrtc-ns3/webrtc/modules/pacing','-L/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller','-L/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller','-L/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator','-L/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp'])
+    #webrtc.env.append_value("STATICLIB",["system_wrappers","rtc_base","api","logging","utility","pacing"])
+    webrtc.env.append_value('INCLUDES', ['/home/zsy/webrtc-ns3/webrtc/'])
+    webrtc.use.append("librtc_base")
+    webrtc.use.append("libapi")
+    webrtc.use.append("liblogging") 
+    webrtc.use.append("libutility")
+    webrtc.use.append("librtp_rtcp_format") 
+    webrtc.use.append("libsystem_wrappers")
+    webrtc.use.append("libbitrate_controller")
+    webrtc.use.append("libremote_bitrate_estimator")
+    webrtc.use.append("libcongestion_controller")
+    webrtc.use.append("libpacing")
+    

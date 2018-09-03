@@ -1,0 +1,4 @@
+#ifndef WEBRTC_CONSTANTS_H
+#define WEBRTC_CONSTANTS_H
+#define SIM_MIN_BITRATE		80000
+#endif

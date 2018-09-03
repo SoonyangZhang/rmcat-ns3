@@ -1,0 +1,7 @@
+add_subdirectory(pacing)
+add_subdirectory(utility)
+add_subdirectory(congestion_controller)
+add_subdirectory(bitrate_controller)
+add_subdirectory(remote_bitrate_estimator)
+add_subdirectory(rtp_rtcp)
+add_subdirectory(audio_coding)

@@ -1,0 +1,32 @@
+# c++11 required
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+include_directories(../../)
+include_directories(../)
+set(logging_FILES
+rtc_event_log/events/rtc_event_audio_network_adaptation.cc
+rtc_event_log/events/rtc_event_audio_playout.cc
+rtc_event_log/events/rtc_event_audio_receive_stream_config.cc
+rtc_event_log/events/rtc_event_audio_send_stream_config.cc
+rtc_event_log/events/rtc_event_bwe_update_delay_based.cc
+rtc_event_log/events/rtc_event_bwe_update_loss_based.cc
+rtc_event_log/events/rtc_event_logging_started.cc
+rtc_event_log/events/rtc_event_logging_stopped.cc
+rtc_event_log/events/rtc_event_probe_cluster_created.cc
+rtc_event_log/events/rtc_event_probe_result_failure.cc
+rtc_event_log/events/rtc_event_probe_result_success.cc
+rtc_event_log/events/rtc_event_rtcp_packet_incoming.cc
+rtc_event_log/events/rtc_event_rtcp_packet_outgoing.cc
+rtc_event_log/events/rtc_event_rtp_packet_incoming.cc
+rtc_event_log/events/rtc_event_rtp_packet_outgoing.cc
+rtc_event_log/events/rtc_event_video_receive_stream_config.cc
+rtc_event_log/events/rtc_event_video_send_stream_config.cc
+rtc_event_log/output/rtc_event_log_output_file.cc
+rtc_event_log/rtc_stream_config.cc
+rtc_event_log/encoder/rtc_event_log_encoder_legacy.cc
+rtc_event_log/rtc_event_log.cc
+rtc_event_log/rtc_event_log_factory.cc
+${PROJECT_SOURCE_DIR}/modules/rtp_rtcp/source/rtp_packet.cc
+)
+add_library(logging SHARED ${logging_FILES})
+target_link_libraries(logging audio_coding api)
