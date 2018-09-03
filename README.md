@@ -16,3 +16,10 @@ In simulation(razor-example/gcc_tcp.cc), a point to point channel was created. F
 
 Its the success importation of razor project on ns3 encourages me get the original GCC in webrtc running on ns3.
 
+
+To compile the webrtc code, first compile libevent, read the instruction under home-zsy-webrtc-ns3/webrtc/base/libevent.  
+
+And  cmake .  under of home-zsy-webrtc-ns3/webrtc/ to get the dynamic library.  
+
+If you quite interesting the code, and think the above instrcution is quite complex, you could email me for the VM during the experiment.  
+
