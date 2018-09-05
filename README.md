@@ -1,5 +1,6 @@
 # rmcat-ns3
-A comparison of rmcat protocol, namely NADA, GCC and SCReAM on ns3 platform. The version of ns is 3.26.  
+A comparison of rmcat protocol, namely NADA, GCC and SCReAM on ns3 platform. The version of ns is 3.26.
+The paper link https://arxiv.org/pdf/1809.00304.pdf   
 The simulation code of NADA can get from https://github.com/cisco/ns3-rmcat  
 For, I just release the SCReAM code modified from https://github.com/EricssonResearch/scream  
 
