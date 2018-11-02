@@ -29,6 +29,7 @@ def configure(conf):
 def build(bld):
     webrtc= bld.create_ns3_module('webrtc-ns3', ['core','multipathvideo','internet','network'])
     webrtc.source = [
+    'model/mpcommon.cc',
         'model/packetgenerator.cc',
 	'model/processmodule.cc',
 	'model/simulationclock.cc',
@@ -40,6 +41,7 @@ def build(bld):
     headers = bld(features='ns3header')
     headers.module = 'webrtc-ns3'
     headers.source = [
+    'model/mpcommon.h'
         'model/packetgenerator.h',
 	'model/processmodule.h',
 	'model/simulationclock.h',
