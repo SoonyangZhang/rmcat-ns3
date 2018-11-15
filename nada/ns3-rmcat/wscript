@@ -1,0 +1,54 @@
+# -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+###############################################################################
+#  Copyright 2016-2017 Cisco Systems, Inc.                                    #
+#                                                                             #
+#  Licensed under the Apache License, Version 2.0 (the "License");            #
+#  you may not use this file except in compliance with the License.           #
+#                                                                             #
+#  You may obtain a copy of the License at                                    #
+#                                                                             #
+#      http://www.apache.org/licenses/LICENSE-2.0                             #
+#                                                                             #
+#  Unless required by applicable law or agreed to in writing, software        #
+#  distributed under the License is distributed on an "AS IS" BASIS,          #
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   #
+#  See the License for the specific language governing permissions and        #
+#  limitations under the License.                                             #
+###############################################################################
+
+def build(bld):
+    module = bld.create_ns3_module('ns3-rmcat', ['wifi', 'point-to-point', 'applications', 'internet-apps'])
+    module.source = [
+        'model/apps/rmcat-sender.cc',
+        'model/apps/rmcat-receiver.cc',
+        'model/apps/rmcat-header.cc',
+        'model/syncodecs/syncodecs.cc',
+        'model/syncodecs/traces-reader.cc',
+        'model/congestion-control/sender-based-controller.cc',
+        'model/congestion-control/dummy-controller.cc',
+        'model/congestion-control/nada-controller.cc',
+        'model/topo/topo.cc',
+        'model/topo/wired-topo.cc',
+        'model/topo/wifi-topo.cc',
+        ]
+
+    module.defines = ['NS3_ASSERT_ENABLE', 'NS3_LOG_ENABLE']
+    module.cxxflags = ['-std=c++11', '-g']
+    headers = bld(features='ns3header')
+    headers.module = 'ns3-rmcat'
+    headers.source = [
+        'model/apps/rmcat-constants.h',
+        'model/apps/rmcat-sender.h',
+        'model/apps/rmcat-receiver.h',
+        'model/apps/rmcat-header.h',
+        'model/syncodecs/syncodecs.h',
+        'model/syncodecs/traces-reader.h',
+        'model/congestion-control/sender-based-controller.h',
+        'model/congestion-control/dummy-controller.h',
+        'model/congestion-control/nada-controller.h',
+        'model/topo/topo.h',
+        'model/topo/wired-topo.h',
+        'model/topo/wifi-topo.h',
+       ]
+

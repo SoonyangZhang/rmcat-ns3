@@ -1,0 +1,378 @@
+semena@semena-lnx ~/NoBkUp $ octave ../work/ns3/video_traces/extraction/traces_gen_octave.m 
+GNU Octave, version 3.8.1
+Copyright (C) 2014 John W. Eaton and others.
+This is free software; see the source code for copying conditions.
+There is ABSOLUTELY NO WARRANTY; not even for MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  For details, type 'warranty'.
+
+Octave was configured for "x86_64-pc-linux-gnu".
+
+Additional information about Octave is available at http://www.octave.org.
+
+Please contribute if you find this software useful.
+For more information, visit http://www.octave.org/get-involved.html
+
+Read http://www.octave.org/bugs.html to learn how to submit bug reports.
+For information about changes from previous versions, type 'news'.
+
+resolution: 1080 rate: 100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B100 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B200 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B300 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B400 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B500 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 600
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B600 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_600.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 700
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B700 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_700.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 800
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B800 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_800.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 900
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B900 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_900.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 1000
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1000 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_1000.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 1100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1100 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_1100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 1200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1200 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_1200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 1300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1300 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_1300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 1400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1400 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_1400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 1080 rate: 1500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1500 --psnr -p 1 -v  --vf resize:width=1920,height=1080,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_1080p_1500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B100 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B200 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B300 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B400 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B500 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 600
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B600 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_600.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 700
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B700 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_700.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 800
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B800 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_800.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 900
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B900 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_900.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 1000
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1000 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_1000.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 1100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1100 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_1100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 1200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1200 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_1200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 1300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1300 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_1300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 1400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1400 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_1400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 720 rate: 1500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1500 --psnr -p 1 -v  --vf resize:width=1280,height=720,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_720p_1500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B100 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B200 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B300 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B400 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B500 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 600
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B600 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_600.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 700
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B700 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_700.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 800
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B800 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_800.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 900
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B900 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_900.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 1000
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1000 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_1000.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 1100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1100 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_1100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 1200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1200 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_1200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 1300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1300 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_1300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 1400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1400 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_1400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 540 rate: 1500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1500 --psnr -p 1 -v  --vf resize:width=960,height=540,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_540p_1500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B100 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B200 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B300 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B400 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B500 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 600
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B600 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_600.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 700
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B700 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_700.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 800
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B800 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_800.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 900
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B900 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_900.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 1000
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1000 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_1000.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 1100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1100 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_1100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 1200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1200 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_1200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 1300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1300 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_1300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 1400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1400 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_1400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 360 rate: 1500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1500 --psnr -p 1 -v  --vf resize:width=640,height=360,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_360p_1500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B100 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B200 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B300 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B400 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B500 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 600
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B600 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_600.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 700
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B700 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_700.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 800
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B800 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_800.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 900
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B900 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_900.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 1000
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1000 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_1000.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 1100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1100 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_1100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 1200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1200 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_1200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 1300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1300 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_1300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 1400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1400 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_1400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 240 rate: 1500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1500 --psnr -p 1 -v  --vf resize:width=432,height=240,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_240p_1500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B100 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B200 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B300 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B400 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B500 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 600
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B600 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_600.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 700
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B700 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_700.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 800
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B800 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_800.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 900
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B900 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_900.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 1000
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1000 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_1000.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 1100
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1100 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_1100.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 1200
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1200 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_1200.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 1300
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1300 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_1300.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 1400
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1400 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_1400.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+resolution: 180 rate: 1500
+
+x264 --frames 6000 --seek 1900 --profile baseline -I "infinite" --no-scenecut -B1500 --psnr -p 1 -v  --vf resize:width=320,height=180,method=spline --rc-lookahead 1 -o big_buck_bunny/bbb_offset1900_1080p24fps_180p_1500.mkv big_buck_bunny/bbb_offset1900_1080p24fps.y4m 2>&1
+
+3283.8 semena@semena-lnx ~/NoBkUp $ 
