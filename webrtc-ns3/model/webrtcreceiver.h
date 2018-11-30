@@ -7,7 +7,7 @@
 #include "simulationclock.h"
 #include "webrtcheader.h"
 #include "ns3/socket.h"
-#include "ns3/mpcommon.h"
+#include "ns3/webmpcommon.h"
 #include "ns3/network-module.h"
 #include "ns3/internet-module.h"
 #include <memory>
@@ -22,17 +22,15 @@ public:
 	~WebrtcReceiver();
 	void Init(uint32_t uid,uint32_t cid);
 	void Bind(uint16_t port);
-	void AddSendRtpModule(webrtc::RtpRtcp* rtp_module, bool remb_candidate);
-	void RemoveSendRtpModule(webrtc::RtpRtcp* rtp_module);
+	//void AddSendRtpModule(webrtc::RtpRtcp* rtp_module, bool remb_candidate);
+	//void RemoveSendRtpModule(webrtc::RtpRtcp* rtp_module);
 
 	void SetWebrtcSender(Ptr<WebrtcSender>sender){m_sender=sender;}
 	typedef Callback<void,uint64_t> DelayCallback;
 	void SetDelayCallback(DelayCallback cb){m_delayCb=cb;}
-	//void AddReceiveRtpModule(webrtc::RtcpFeedbackSenderInterface* rtcp_sender,
-	  //                         bool remb_candidate);
-	//void RemoveReceiveRtpModule(webrtc::RtcpFeedbackSenderInterface* rtcp_sender);
-  	void AddReceiveRtpModule(webrtc::RtpRtcp* rtp_module,bool remb_candidate);
-  	void RemoveReceiveRtpModule(webrtc::RtpRtcp* rtp_module);
+
+  	//void AddReceiveRtpModule(webrtc::RtpRtcp* rtp_module,bool remb_candidate);
+  	//void RemoveReceiveRtpModule(webrtc::RtpRtcp* rtp_module);
 	  // Implements PacedSender::Callback.
 	bool TimeToSendPacket(uint32_t ssrc,
 	                        uint16_t sequence_number,
@@ -43,7 +41,7 @@ public:
 	size_t TimeToSendPadding(size_t bytes,
 	                           const webrtc::PacedPacketInfo& packet_info) override;
 
-	void SetTransportWideSequenceNumber(uint16_t sequence_number);
+	//void SetTransportWideSequenceNumber(uint16_t sequence_number);
 	uint16_t AllocateSequenceNumber() override;
 
 	  // Called every time there is a new bitrate estimate for a receive channel
@@ -56,10 +54,10 @@ public:
 
 	  // Ensures remote party notified of the receive bitrate limit no larger than
 	  // |bitrate_bps|.
-	void SetMaxDesiredReceiveBitrate(int64_t bitrate_bps);
+	//void SetMaxDesiredReceiveBitrate(int64_t bitrate_bps);
 
 	  // Send REMB feedback.
-	bool SendRemb(int64_t bitrate_bps, const std::vector<uint32_t>& ssrcs);
+	//bool SendRemb(int64_t bitrate_bps, const std::vector<uint32_t>& ssrcs);
 
 	  // Send transport feedback packet to send-side.
 	bool SendTransportFeedback(webrtc::rtcp::TransportFeedback* packet) override;

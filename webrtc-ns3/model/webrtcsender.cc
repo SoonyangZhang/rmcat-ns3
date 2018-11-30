@@ -32,7 +32,7 @@ void WebrtcSender::InitialSetup(Ipv4Address dest_ip,uint16_t dest_port)
     		&m_nullLog,m_send_bucket);
    //m_controller->SetTraceBitrateFun(&TraceBitrate);
 	//kInitialBitrateBps
-   m_controller->SetBweBitrates(WEBRTC_MIN_BITRATE, kInitialBitrateBps, 5 * kInitialBitrateBps);
+   m_controller->SetBweBitrates(WEBRTC_MIN_BITRATE, kInitialBitrateBps, 10 * kInitialBitrateBps);
    // m_controller->SetTransportOverhead(header_len);//deprecated
 	m_send_bucket->SetEstimatedBitrate(kInitialBitrateBps);
         m_send_bucket->SetProbingEnabled(false);
@@ -316,7 +316,7 @@ void WebrtcSender::SendPing(void)
 		p->AddHeader(header);
 		Send(p);
 		Time next=MilliSeconds(m_rtt);
-		Simulator::Schedule(next,&WebrtcSender::SendPing,this);
+		m_pingTimer=Simulator::Schedule(next,&WebrtcSender::SendPing,this);
 	}
 }
 }

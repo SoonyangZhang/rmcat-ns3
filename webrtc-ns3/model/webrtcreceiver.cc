@@ -28,25 +28,6 @@ void WebrtcReceiver::Bind(uint16_t port)
     NS_ASSERT (ret == 0);
     m_socket->SetRecvCallback (MakeCallback (&WebrtcReceiver::RecvPacket,this));
 }
-void WebrtcReceiver::AddSendRtpModule(webrtc::RtpRtcp* rtp_module, bool remb_candidate)
-{
-	NS_LOG_FUNCTION("no");
-}
-void WebrtcReceiver::RemoveSendRtpModule(webrtc::RtpRtcp* rtp_module)
-{
-	NS_LOG_FUNCTION("no");
-}
-void WebrtcReceiver::AddReceiveRtpModule(webrtc::RtpRtcp* rtp_module, bool remb_candidate)
-//void WebrtcReceiver::AddReceiveRtpModule(webrtc::RtcpFeedbackSenderInterface* rtcp_sender,
-//                           bool remb_candidate)
-{
-	NS_LOG_FUNCTION("no");
-}
-void WebrtcReceiver::RemoveReceiveRtpModule(webrtc::RtpRtcp* rtp_module)
-//void WebrtcReceiver::RemoveReceiveRtpModule(webrtc::RtcpFeedbackSenderInterface* rtcp_sender)
-{
-	NS_LOG_FUNCTION("no");
-}
 bool WebrtcReceiver::TimeToSendPacket(uint32_t ssrc,
                         uint16_t sequence_number,
                         int64_t capture_timestamp,
@@ -62,10 +43,6 @@ size_t WebrtcReceiver::TimeToSendPadding(size_t bytes,
 	NS_LOG_FUNCTION("no");
 	return bytes;
 }
-void WebrtcReceiver::SetTransportWideSequenceNumber(uint16_t sequence_number)
-{
-	NS_LOG_FUNCTION("no");
-}
 uint16_t WebrtcReceiver::AllocateSequenceNumber()
 {
 	NS_LOG_FUNCTION("no");
@@ -76,15 +53,12 @@ void WebrtcReceiver::OnReceiveBitrateChanged(const std::vector<uint32_t>& ssrcs,
 {
 	NS_LOG_FUNCTION("no");
 }
-void WebrtcReceiver::SetMaxDesiredReceiveBitrate(int64_t bitrate_bps)
-{
-	NS_LOG_FUNCTION("no");
-}
+/*
 bool WebrtcReceiver::SendRemb(int64_t bitrate_bps, const std::vector<uint32_t>& ssrcs)
 {
 	NS_LOG_FUNCTION("no");
 	return true;
-}
+}*/
 bool WebrtcReceiver::SendTransportFeedback(webrtc::rtcp::TransportFeedback* packet)
 {
 	packet->SetSenderSsrc(m_uid);
@@ -281,7 +255,7 @@ void WebrtcReceiver::SendPing(void)
 		p->AddHeader(header);
 		Send(p);
 		Time next=MilliSeconds(m_rtt);
-		Simulator::Schedule(next,&WebrtcReceiver::SendPing,this);
+		m_pingTimer=Simulator::Schedule(next,&WebrtcReceiver::SendPing,this);
 	}
 }
 void WebrtcReceiver::StartApplication()
