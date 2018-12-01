@@ -36,13 +36,8 @@ void WebrtcSender::InitialSetup(Ipv4Address dest_ip,uint16_t dest_port)
    // m_controller->SetTransportOverhead(header_len);//deprecated
 	m_send_bucket->SetEstimatedBitrate(kInitialBitrateBps);
         m_send_bucket->SetProbingEnabled(false);
-	std::string fileAndLine;
-    	fileAndLine=std::string("webrtcsender")+std::to_string(__LINE__);
-	rtc::Location location(__FUNCTION__,fileAndLine.c_str());
-	fileAndLine=std::string("webrtcsender")+std::to_string(__LINE__);
-	rtc::Location location1(__FUNCTION__,fileAndLine.c_str());
-	m_pm->RegisterModule(m_send_bucket,location);
-	m_pm->RegisterModule(m_controller,location1);
+	m_pm->RegisterModule(m_send_bucket,RTC_FROM_HERE);
+	m_pm->RegisterModule(m_controller,RTC_FROM_HERE);
 	NS_LOG_FUNCTION(m_pm->GetSize());
 }
 void WebrtcSender::Connect()

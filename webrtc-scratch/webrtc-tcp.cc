@@ -15,7 +15,7 @@
 using namespace ns3;
 using namespace std;
 NS_LOG_COMPONENT_DEFINE ("Webrtc-Tcp");
-const uint32_t TOPO_DEFAULT_BW     = 2000000;    // in bps: 1Mbps
+const uint32_t TOPO_DEFAULT_BW     = 3000000;    // in bps: 1Mbps
 const uint32_t TOPO_DEFAULT_PDELAY =      100;    // in ms:   50ms
 const uint32_t TOPO_DEFAULT_QDELAY =     300;    // in ms:  300ms
 const uint32_t DEFAULT_PACKET_SIZE = 1000;
@@ -92,7 +92,8 @@ static NodeContainer BuildExampleTopo (uint64_t bps,
     // disable tc for now, some bug in ns3 causes extra delay
     TrafficControlHelper tch;
     tch.Uninstall (devices);
-
+// warning
+// without loss, when the ABW>2.5M,GCC tends to overuse the channel
 	std::string errorModelType = "ns3::RateErrorModel";
   	ObjectFactory factory;
   	factory.SetTypeId (errorModelType);
@@ -164,11 +165,14 @@ int main(int argc, char *argv[])
 	Config::SetDefault ("ns3::RateErrorModel::ErrorRate", DoubleValue (0.1));
 	Config::SetDefault ("ns3::RateErrorModel::ErrorUnit", StringValue ("ERROR_UNIT_PACKET"));
 
-	Config::SetDefault ("ns3::BurstErrorModel::ErrorRate", DoubleValue (0.05));
+	Config::SetDefault ("ns3::BurstErrorModel::ErrorRate", DoubleValue (0.01));
 	Config::SetDefault ("ns3::BurstErrorModel::BurstSize", StringValue ("ns3::UniformRandomVariable[Min=1|Max=3]"));
     //LogComponentEnable("Webrtc-Tcp",LOG_LEVEL_ALL);
     SetClockForWebrtc();//that's a must
-    LogComponentEnable("PacketGenerator",LOG_LEVEL_ALL);
+    //LogComponentEnable("PacketGenerator",LOG_LEVEL_ALL);
+    //open webrtc log
+    //LogSinkConsole* _myLogStream = new LogSinkConsole();
+   // rtc::LogMessage::AddLogToStream(_myLogStream, rtc::INFO); 
 	const uint64_t linkBw   = TOPO_DEFAULT_BW;
     const uint32_t msDelay  = TOPO_DEFAULT_PDELAY;
     const uint32_t msQDelay = TOPO_DEFAULT_QDELAY;
