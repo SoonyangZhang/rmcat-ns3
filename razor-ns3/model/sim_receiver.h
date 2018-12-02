@@ -12,6 +12,7 @@
 #include "ns3/socket.h"
 #include "ns3/event-id.h"
 #include "ns3/simulator.h"
+#include "ns3/callback.h"
 #include<vector>
 namespace ns3
 {
@@ -44,6 +45,10 @@ public:
 	void HeartBeat();
 	void StatsRecvRate();
 	void UpdateRtt(uint32_t rtt,uint32_t rtt_var);
+	typedef Callback<void,uint32_t> LossSeqCallback;
+	void SetLossSeqTrace(LossSeqCallback cb){
+		m_lossSeqCb=cb;
+	}
 private:
 	uint32_t GetIndex(uint32_t i);
 //the important part is not about video consuming,so ignore it
@@ -70,6 +75,8 @@ private:
 	EventId m_statsRateEvent;
 	uint32_t m_rateStatsInterval;//in 100ms;
 	Callback<void,Ptr<Packet>> m_feedback;
+	uint32_t m_base_seq{0};
+	LossSeqCallback m_lossSeqCb;
 };
 }
 

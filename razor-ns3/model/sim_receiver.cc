@@ -6,6 +6,7 @@
 #include "ns3/packet.h"
 #include"ns3/log.h"
 #include "sim_constants.h"
+#include <string>
 namespace ns3
 {
 NS_LOG_COMPONENT_DEFINE("SimReceiver");
@@ -91,7 +92,7 @@ void SimReceiver::SetFeedBack(Callback<void,Ptr<Packet>>feedback)
 }
 void SimReceiver::SendFeedback(void*handler,const uint8_t* payload, int payload_size)
 {
-	NS_LOG_FUNCTION(Simulator::Now().GetMilliSeconds());
+	//NS_LOG_FUNCTION(Simulator::Now().GetMilliSeconds());
 	SimReceiver *obj=static_cast<SimReceiver*>(handler);
 	sim_header_t sHeader=obj->m_sHeader;
 	sHeader.mid=RazorProtoType::SIM_FEEDBACK;
@@ -105,7 +106,7 @@ void SimReceiver::SendFeedback(void*handler,const uint8_t* payload, int payload_
 	header.SetMessagePayload((void*)&feedback,sizeof(sim_feedback_t));
 	if(!obj->m_feedback.IsNull())
 	{
-		NS_LOG_INFO("send feedback");
+		//NS_LOG_INFO("send feedback");
 		Ptr<Packet> packet=Create<Packet>(0);
 		packet->AddHeader(header);
 		obj->m_feedback(packet);
@@ -113,7 +114,21 @@ void SimReceiver::SendFeedback(void*handler,const uint8_t* payload, int payload_
 }
 void SimReceiver::RecvFakeData(sim_segment_t seg)
 {
-	NS_LOG_FUNCTION(Simulator::Now().GetMilliSeconds()<<"receive "<<seg.packet_id);
+	//NS_LOG_FUNCTION(Simulator::Now().GetMilliSeconds()<<"receive "<<seg.packet_id);
+	if(seg.packet_id!=m_base_seq+1){
+		uint32_t i=0;
+		uint32_t from=m_base_seq+1;
+		uint32_t to=seg.packet_id;		
+		for(i=from;i<to;i++){
+			if(!m_lossSeqCb.IsNull()){
+				m_lossSeqCb(i);
+			}
+		}		
+		}
+	m_base_seq=seg.packet_id;
+	/*if(!m_lossSeqCb.IsNull()){
+		m_lossSeqCb(seg.packet_id);
+	}*/
 	uint8_t  header_len=sizeof(sim_header_t)+sizeof(sim_segment_t);
 	if(m_cc!=NULL)
 	{
@@ -137,7 +152,7 @@ uint32_t SimReceiver::GetFakeData()
 }
 void SimReceiver::HeartBeat()
 {
-	NS_LOG_FUNCTION_NOARGS();
+	//NS_LOG_FUNCTION_NOARGS();
 	if(m_heartbeatEvent.IsExpired())
 	{
 		if(m_cc!=NULL)
@@ -156,7 +171,7 @@ void SimReceiver::StatsRecvRate()
 	if(m_statsRateEvent.IsExpired())
 	{
 		rate=m_statsDataLen*8/(m_rateStatsInterval*0.001);
-		NS_LOG_INFO("receive bitrate "<<rate);
+		//NS_LOG_INFO("receive bitrate "<<rate);
 		m_statsDataLen=0.0;
 		Time interval=MilliSeconds((uint64_t)m_rateStatsInterval);
 		m_statsRateEvent=Simulator::Schedule(interval,&SimReceiver::StatsRecvRate,this);

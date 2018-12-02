@@ -12,6 +12,7 @@
 #include "ns3/socket.h"
 #include "ns3/event-id.h"
 #include "ns3/simulator.h"
+#include "ns3/callback.h"
 #include<map>
 namespace ns3
 {
@@ -35,10 +36,14 @@ public:
 	void PaceHeartBeat();
 	void SetSegmentSize(uint32_t segmentSize){m_segmentSize=segmentSize;}
 	void SetPaceQueueLen(uint32_t queueLen){m_paceQueueLen=queueLen;}
+	typedef Callback<void,uint32_t> SentSeqCallback;
+	void SetSentSeqTrace(SentSeqCallback cb){
+		m_sentSeqCb=cb;
+	}
 private:
 	sim_header_t m_header;
-	uint32_t m_frame_id;
-	uint32_t m_packet_id;
+	uint32_t m_frame_id{1};
+	uint32_t m_packet_id{1};
 	uint16_t m_transport_seq;
 	bool m_active;
 	int64_t m_first_ts;
@@ -54,6 +59,7 @@ private:
 private:
 	Callback<void,Ptr<Packet>> m_sendPacket;
 	Callback<void,uint32_t>m_changeBitRate;
+	SentSeqCallback m_sentSeqCb;
 };
 }
 #endif /* SIM_SENDER_H */

@@ -4,21 +4,20 @@
 #include"ns3/log.h"
 #include"ns3/nstime.h"
 #include "ns3/packet.h"
+#include<string>
 namespace ns3
 {
 NS_LOG_COMPONENT_DEFINE("SimSender");
 SimSender::SimSender()
 {
-	m_frame_id=0;
-	m_packet_id=0;
 	m_transport_seq=0;
 	m_active=true;
 	m_first_ts=-1;
-	m_remb=0;//0 open receiver bandwidth estimate
+	m_remb=1;//0 open receiver bandwidth estimate
 	m_paceTime=5;
 	m_segmentSize=1000;
 	m_lossFraction=0;
-	m_paceQueueLen=300;
+	m_paceQueueLen=3000; //300;  change it
 	m_maxSplitPackets=1000;
 	m_cc=razor_sender_create((void*)this,&SimSender::ChangeBitRate,(void*)this,
 			&SimSender::PacePacketSend,m_paceQueueLen);
@@ -68,7 +67,7 @@ void SimSender::UpdateRtt(uint32_t rtt,uint32_t rtt_var)
 }
 void SimSender::ProcessFeedBack(sim_feedback_t feedback)
 {
-	NS_LOG_FUNCTION_NOARGS();
+	//NS_LOG_FUNCTION_NOARGS();
 	if(m_cc!=NULL)
 	{
 		m_cc->on_feedback(m_cc,feedback.feedback,feedback.feedback_size);
@@ -123,10 +122,9 @@ void SimSender::PutFakeData(uint8_t ftype,uint32_t size)
 	{
 		timestamp=(uint32_t)(now_ts-m_first_ts);
 	}
-	++m_frame_id;
 	for(i=0;i<total;i++)
 	{
-		seg.packet_id=++m_packet_id;
+		seg.packet_id=m_packet_id;
 		seg.fid=m_frame_id;
 		seg.ftype=ftype;
 		seg.index=i;
@@ -139,7 +137,9 @@ void SimSender::PutFakeData(uint8_t ftype,uint32_t size)
 		seg.data_size=splits[i];
 		m_cache.insert(std::make_pair(seg.packet_id,seg));
 		m_cc->add_packet(m_cc,seg.packet_id,0,seg.data_size+header_len);
+		m_packet_id++;
 	}
+	m_frame_id++;
 	//NS_LOG_INFO("splits packet "<<total);
 }
 void SimSender::SetSendSegmentCallback(Callback<void,Ptr<Packet>>sendPacket)
@@ -152,7 +152,7 @@ void SimSender::SetVideoBitChangeCallback(Callback<void,uint32_t> changeBitRate)
 }
 void SimSender::ChangeBitRate(void* trigger, uint32_t bitrate, uint8_t fraction_loss, uint32_t rtt)
 {
-	NS_LOG_FUNCTION(Simulator::Now().GetMilliSeconds());
+	double now=Simulator::Now().GetSeconds();
 	SimSender *obj=static_cast<SimSender*>(trigger);
 	uint32_t overhead_bitrate, per_packets_second, payload_bitrate, video_bitrate_kbps;
 	double loss;
@@ -168,20 +168,22 @@ void SimSender::ChangeBitRate(void* trigger, uint32_t bitrate, uint8_t fraction_
 	{
 		obj->m_lossFraction=(3*obj->m_lossFraction+fraction_loss)/4;
 	}
-	loss=obj->m_lossFraction/255.0;
+	loss=(double)obj->m_lossFraction/255.0;
 	if (loss > 0.5)
 		loss = 0.5;
 	video_bitrate_kbps = (uint32_t)((1.0 - loss) * payload_bitrate) / 1000;
-	NS_LOG_INFO("bitrate "<<bitrate<<"change bitrate "<<video_bitrate_kbps<<"kbps");
+	NS_LOG_INFO(std::to_string(now)<<" "<<video_bitrate_kbps<<" l "<<std::to_string(loss));
 	if(!obj->m_changeBitRate.IsNull())
 	{
-		obj->m_changeBitRate(video_bitrate_kbps);
+		//to prevent channel overuse 
+		uint32_t protect_rate=video_bitrate_kbps;
+		obj->m_changeBitRate(protect_rate);//video_bitrate_kbps
 	}
 
 }
 void SimSender::PacePacketSend(void* handler, uint32_t packet_id, int retrans, size_t size)
 {
-	NS_LOG_INFO(Simulator::Now().GetMilliSeconds()<<"packet send "<<packet_id<<"size "<<size);
+	//NS_LOG_INFO(Simulator::Now().GetMilliSeconds()<<"packet send "<<packet_id<<"size "<<size);
 	SimSender *obj=static_cast<SimSender*>(handler);
 	if(!obj->m_sendPacket.IsNull())
 	{
@@ -197,12 +199,15 @@ void SimSender::PacePacketSend(void* handler, uint32_t packet_id, int retrans, s
 		segment.send_ts=(uint16_t)(Simulator::Now().GetMilliSeconds()-obj->m_first_ts-segment.timestamp);
 		segment.transport_seq=++(obj->m_transport_seq);
 		obj->m_cache.erase(iter);
+		if(!obj->m_sentSeqCb.IsNull()){
+			obj->m_sentSeqCb(segment.packet_id);
+		}
 		uint8_t header_len=sizeof(sim_header_t)+sizeof(sim_segment_t);
 		if(obj->m_cc)
 		{
 			obj->m_cc->on_send(obj->m_cc,segment.transport_seq,header_len+segment.data_size);
 		}
-		NS_LOG_INFO("packet_id"<<packet_id<<"seq"<<segment.transport_seq);
+		//NS_LOG_INFO("packet_id"<<packet_id<<"seq"<<segment.transport_seq);
 		sim_header_t sHeader=obj->m_header;
 		sHeader.mid=RazorProtoType::SIM_SEG;
 		RazorHeader header;

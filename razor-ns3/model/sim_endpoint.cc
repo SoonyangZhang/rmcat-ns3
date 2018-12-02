@@ -382,6 +382,9 @@ void SimEndpoint::CalculateRtt(uint32_t keep_rtt)
 void SimEndpoint::SenderInit()
 {
 	m_sender=new SimSender();
+	if(!m_sentSeqCb.IsNull()){
+		m_sender->SetSentSeqTrace(m_sentSeqCb);
+	}
 	sim_header_t sHeader;
 	INIT_SIM_HEADER(sHeader,RazorProtoType::MIN_MSG_ID,m_uid);
 	m_sender->SetHeader(sHeader);
@@ -398,21 +401,24 @@ void SimEndpoint::ReceiverInit()
 	if(m_receiver==nullptr)
 	{
 		m_receiver=new SimReceiver();
+		if(!m_lossSeqCb.IsNull()){
+			m_receiver->SetLossSeqTrace(m_lossSeqCb);
+		}
 		sim_header_t sHeader;
 		INIT_SIM_HEADER(sHeader,RazorProtoType::MIN_MSG_ID,m_uid);
 		m_receiver->SetHeader(sHeader);
 		m_receiver->SetFeedBack(MakeCallback(&SimEndpoint::Send,this));
 	}
 }
-void SimEndpoint::ChangeRate(uint32_t bitrate)
+void SimEndpoint::ChangeRate(uint32_t kbps)
 {
-	uint32_t rate=bitrate*1000;
+	uint32_t rate=kbps*1000;
 	double now=Simulator::Now().GetSeconds();
 	NS_LOG_INFO(now<<" "<<m_bitRate/1000<<" "<<rate/1000);
 	m_bitRate=rate;
 	if(rate<=0)
 	{
-	NS_LOG_FUNCTION("fuck insane bitrate"<<bitrate<< "and set it to min");	
+	NS_LOG_FUNCTION("fuck insane bitrate"<<kbps<< "and set it to min");	
 	m_bitRate=SIM_MIN_BITRATE;
 	}
 	

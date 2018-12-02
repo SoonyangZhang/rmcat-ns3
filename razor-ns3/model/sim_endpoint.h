@@ -49,6 +49,14 @@ public:
 			Callback<void,uint32_t>connectionFailed);
 	void SendPing(void);
 	void Send(Ptr<Packet> packet);
+	typedef Callback<void,uint32_t> LossSeqCallback;
+	void SetLossSeqTrace(LossSeqCallback cb){
+		m_lossSeqCb=cb;
+	}
+	typedef Callback<void,uint32_t> SentSeqCallback;
+	void SetSentSeqTrace(SentSeqCallback cb){
+		m_sentSeqCb=cb;
+	}
 private:
 	void Connect();
     virtual void StartApplication ();
@@ -66,7 +74,7 @@ public:
     	m_bitRate=bitrate;
     	m_frameRate=framerate;
     }
-    void ChangeRate(uint32_t bitrate);
+    void ChangeRate(uint32_t kbps);
     void SenderInit();
     void ReceiverInit();
     void GenerateFakeData();
@@ -102,6 +110,8 @@ private:
 
     SimSender *m_sender;
     SimReceiver *m_receiver;
+	LossSeqCallback m_lossSeqCb;
+	SentSeqCallback m_sentSeqCb;
 };
 }
 #endif /* SIM_ENDPOINT_H */
