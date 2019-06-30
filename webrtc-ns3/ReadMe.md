@@ -7,9 +7,10 @@ And change the environent variable also.
 2 edit the LD_LIBRARY_PATH as following  
 export LD_LIBRARY_PATH=/home/zsy/webrtc-ns3/webrtc/system_wrappers:/home/zsy/webrtc-ns3/webrtc/rtc_base:/home/zsy/webrtc-ns3/webrtc/api:/home/zsy/webrtc-ns3/webrtc/logging:/home/zsy/webrtc-ns3/webrtc/modules/utility:/home/zsy/webrtc-ns3/webrtc/modules/pacing:/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller:/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller:/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator:/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp:$LD_LIBRARY_PATH   
 
-WARNNING:when the link capacity above 3Mbps, the webrtcsender tends to overuse the channel.   
-But when the link was confifured with 5% packets loss, it can work in normal status. Quite weired and did not figure out why.  
-Ways to avoid this problem is to add "random loss rate" at the receiver.  
+In the provious version, I forget feeding packets loss info to bit controller.  
+```
+m_reportObserver->OnReceivedRtcpReceiverReport(blocks,m_rtt,now_ms);
+```
 
 ```
 #include "ns3/random-variable-stream.h"  

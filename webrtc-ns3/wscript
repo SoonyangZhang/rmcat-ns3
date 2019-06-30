@@ -29,20 +29,20 @@ def configure(conf):
 def build(bld):
     webrtc= bld.create_ns3_module('webrtc-ns3', ['core','multipathvideo','internet','network'])
     webrtc.source = [
-    'model/mpcommon.cc',
-        'model/packetgenerator.cc',
+    'model/packetgenerator.cc',
 	'model/processmodule.cc',
 	'model/simulationclock.cc',
 	'model/webrtcsender.cc',
 	'model/webrtcheader.cc',
-        'model/webrtcreceiver.cc',
-        'model/webrtclog.cc',
+    'model/webrtcreceiver.cc',
+    'model/webrtclog.cc',
+    'model/webrtcrecord.cc',    
+    'model/webrtctrace.cc',
 	]
     headers = bld(features='ns3header')
     headers.module = 'webrtc-ns3'
     headers.source = [
-    'model/mpcommon.h'
-        'model/packetgenerator.h',
+    'model/packetgenerator.h',
 	'model/processmodule.h',
 	'model/simulationclock.h',
 	'model/gclock.h',
@@ -52,6 +52,8 @@ def build(bld):
 	'model/webrtcreceiver.h',
 	'model/webrtclog.h',
 	'model/webrtcconstants.h',
+    'model/webrtcrecord.h',  
+    'model/webrtctrace.h',	
 	]
     webrtc.env.append_value("CCFLAGS", ["-I/home/zsy/webrtc-ns3/webrtc"]) 
     webrtc.env.append_value("LINKFLAGS",['-L/home/zsy/webrtc-ns3/webrtc/system_wrappers','-L/home/zsy/webrtc-ns3/webrtc/rtc_base','-L/home/zsy/webrtc-ns3/webrtc/api','-L/home/zsy/webrtc-ns3/webrtc/logging','-L/home/zsy/webrtc-ns3/webrtc/modules/utility','-L/home/zsy/webrtc-ns3/webrtc/modules/pacing','-L/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller','-L/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller','-L/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator','-L/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp'])

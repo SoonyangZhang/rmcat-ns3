@@ -94,7 +94,6 @@ private:
     bool m_running{false};
     uint16_t m_lastPacket{0};
     Ptr<WebrtcSender> m_sender;//I know this ugly,but I had to get the first timestap for delay computation.
-    DelayCallback m_delayCb;
 
 };
 }

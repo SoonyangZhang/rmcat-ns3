@@ -178,7 +178,7 @@ void WebrtcReceiver::RecvPacket(Ptr<Socket> socket)
 		{
 		uint64_t tmp=seg.send_ts+seg.timestamp+m_sender->GetFirstTs();
 		uint64_t gap=now-tmp;
-		m_delayCb(gap);
+		m_delayCb(gap)
 		}
 		m_lastPacket=seg.transport_seq;
 		webrtc::RTPHeader fakeHeader;

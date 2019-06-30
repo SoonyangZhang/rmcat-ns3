@@ -3,30 +3,21 @@
 #include "ns3/log.h"
 #include "processmodule.h"
 #include"rtc_base/timeutils.h"//for test
-#include "rtc_base/location.h"
 #include<string>
-#include <list>
 #include "stdio.h"
 //fisrst AddPacket then OnSentPacket
 namespace ns3
 {
 NS_LOG_COMPONENT_DEFINE("WebrtcSender");
 const uint32_t kInitialBitrateBps = 500000;
-const uint32_t kGenerateReportThreshold=100;
-const float kGraceRateFactor=0.9;
 void TraceBitrate(uint32_t bps)
 {
 	NS_LOG_INFO("trace bitrate webrtc "<<bps);
 }
 WebrtcSender::WebrtcSender()
 {
-
 }
 WebrtcSender::~WebrtcSender(){}
-void WebrtcSender::SetMaxRate(uint32_t max_rate){
-	float rate=kGraceRateFactor*max_rate;
-	m_maxRate=(uint32_t)rate;
-}
 void WebrtcSender::InitialSetup(Ipv4Address dest_ip,uint16_t dest_port)
 {
 	m_peerIP=dest_ip;
@@ -41,14 +32,17 @@ void WebrtcSender::InitialSetup(Ipv4Address dest_ip,uint16_t dest_port)
     		&m_nullLog,m_send_bucket);
    //m_controller->SetTraceBitrateFun(&TraceBitrate);
 	//kInitialBitrateBps
-   m_controller->SetBweBitrates(WEBRTC_MIN_BITRATE, kInitialBitrateBps,m_maxRate);
+   m_controller->SetBweBitrates(WEBRTC_MIN_BITRATE, kInitialBitrateBps, 5 * kInitialBitrateBps);
    // m_controller->SetTransportOverhead(header_len);//deprecated
 	m_send_bucket->SetEstimatedBitrate(kInitialBitrateBps);
         m_send_bucket->SetProbingEnabled(false);
-	m_pm->RegisterModule(m_send_bucket,RTC_FROM_HERE);
-	m_pm->RegisterModule(m_controller,RTC_FROM_HERE);
-	//just to enable loss based congestion control algorithm;
-	m_reportObserver=m_controller->GetBandwidthObserver();
+	std::string fileAndLine;
+    	fileAndLine=std::string("webrtcsender")+std::to_string(__LINE__);
+	rtc::Location location(__FUNCTION__,fileAndLine.c_str());
+	fileAndLine=std::string("webrtcsender")+std::to_string(__LINE__);
+	rtc::Location location1(__FUNCTION__,fileAndLine.c_str());
+	m_pm->RegisterModule(m_send_bucket,location);
+	m_pm->RegisterModule(m_controller,location1);
 	NS_LOG_FUNCTION(m_pm->GetSize());
 }
 void WebrtcSender::Connect()
@@ -124,14 +118,13 @@ void WebrtcSender::RecvPacket(Ptr<Socket> socket)
 	WebrtcHeader header;
 	packet->RemoveHeader(header);
 	uint8_t mid=header.GetMid();
-    int64_t now=Simulator::Now().GetMilliSeconds();
+        int64_t now=Simulator::Now().GetMilliSeconds();
 	switch(mid)
 	{
 	case PT_CONNECT_ACK:
 	{
 		proto_connect_ack_t ack;
 		header.GetMessage((void*)&ack,sizeof(ack));
-		m_peerSsrc=header.GetUid();
 		ProcessConnectAck(ack);
 	}
 	break;
@@ -142,30 +135,9 @@ void WebrtcSender::RecvPacket(Ptr<Socket> socket)
 		std::unique_ptr<webrtc::rtcp::TransportFeedback>feedback=
 		webrtc::rtcp::TransportFeedback::ParseFrom((uint8_t*)&buffer, packet->GetSize ());
 		//NS_LOG_INFO(now<<" feedback "<<packet->GetSize()<<" "<<feedback->GetBaseSequence());
-		const std::vector<webrtc::rtcp::TransportFeedback::ReceivedPacket>& recv_packets=feedback->GetReceivedPackets();
-		for(const webrtc::rtcp::TransportFeedback::ReceivedPacket& a:recv_packets){
-			int64_t convert_seq=m_uint16Toint64.Unwrap(a.sequence_number());
-			uint32_t seq=(uint32_t)convert_seq;
-			if(!m_traceRecvFeedbackCb.IsNull()){
-				m_traceRecvFeedbackCb(m_recvFeedbackCounter,seq);
-			}
-			m_seqRecord.OnNewSeq(seq);
-		}
-		if(m_seqRecord.ShoudGenerateReport(kGenerateReportThreshold)){
-			uint32_t delay_since_last=now-m_last_sender_report_timestamp;
-			webrtc::RTCPReportBlock block(m_peerSsrc,m_ssrc,m_seqRecord.FractionLoss(),m_seqRecord.PacketLost(),
-			m_seqRecord.m_highSeq,0,m_last_sender_report_timestamp,delay_since_last);
-			webrtc::ReportBlockList blocks;
-			blocks.push_back(block);
-			int64_t now_ms=Simulator::Now().GetMilliSeconds();
-			m_reportObserver->OnReceivedRtcpReceiverReport(blocks,m_rtt,now_ms);
-			m_seqRecord.Reset();
-			m_last_sender_report_timestamp=now;		
-		}
-		m_recvFeedbackCounter++;
 		if(m_controller)
 		{
-			m_controller->OnTransportFeedback(*feedback.get());
+		m_controller->OnTransportFeedback(*feedback.get());
 		}
 		
 	}
@@ -198,12 +170,6 @@ void WebrtcSender::ProcessConnectAck(proto_connect_ack_t ack)
 		m_rxTimer.Cancel();
 		m_packetGenerator.Start();
 		m_pm->Start();
-		m_last_sender_report_timestamp=Simulator::Now().GetMilliSeconds();
-		webrtc::RTCPReportBlock block(m_peerSsrc,m_ssrc,0,0,0,0,m_last_sender_report_timestamp,0);
-		webrtc::ReportBlockList blocks;
-		blocks.push_back(block);
-		int64_t now_ms=Simulator::Now().GetMilliSeconds();
-		m_reportObserver->OnReceivedRtcpReceiverReport(blocks,m_rtt,now_ms);
 		m_pingTimer=Simulator::ScheduleNow(&WebrtcSender::SendPing,this);
 	}
 }
@@ -295,7 +261,7 @@ bool WebrtcSender::TimeToSendPacket(uint32_t ssrc,
 	proto_segment_t segment=iter->second;
 	segment.send_ts=(uint16_t)(Simulator::Now().GetMilliSeconds()-m_first_ts-segment.timestamp);
 	m_cache.erase(iter);
-	m_controller->AddPacket(m_uid,sequence_number,segment.data_size+header_len,cluster_info);
+	m_controller->AddPacket(m_uid,sequence_number,segment.data_size+header_len,webrtc::PacedPacketInfo());
 	WebrtcHeader header;
 	header.SetUid(m_uid);
 	header.SetMid(ProtoType::PT_SEG);
@@ -328,9 +294,7 @@ void WebrtcSender::StopApplication()
 {
 	m_running=false;
 	m_pm->Stop();
-	if(m_pingTimer.IsRunning()){
-		m_pingTimer.Cancel();
-	}
+	m_pingTimer.Cancel();
 	m_packetGenerator.Stop();
 	m_pm->DeRegisterModule(m_send_bucket);
 	m_pm->DeRegisterModule(m_controller);
