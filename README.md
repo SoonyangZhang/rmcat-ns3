@@ -15,13 +15,17 @@ In simulation(razor-example/gcc_tcp.cc), a point to point channel was created. F
 
 ![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/razor-example/gcc_razor_0remb.png)
 ![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/razor-example/gcc_razor_1remb.png)  
-If you quite interesting the code, and think the above instrcution is quite complex, you could email me for the VM during the experiment.  
+If you quite interesting in this simualation, and think the above instrcution is quite complex, you could email me for the VM during the experiment.  
 some simualtion example of GCC algorithms:  
 bandwidth fainress property:  
 ![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/webrtc-results/webrtc_4_bw.png)  
 owe way transmission delay:  
 ![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/webrtc-results/webrtc_4_delay.png)  
-In some test case, if the WEBRTC_MIN_BITRATE is too small, gcc flows may not converge to the fairness line.  
+In some test case, gcc flows may not converge to the fairness line, case 1.  
+bandwidth fainress property:  
+![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/webrtc-results/webrtc_1_bw.png)  
+owe way transmission delay:  
+![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/webrtc-results/webrtc_1_delay.png)  
 
 The command to get webrtc-tcp running:  
 ```
