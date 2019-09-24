@@ -10,6 +10,18 @@ the code in screamex.cc sendApp->SetTraceFilePath("/you_path/trace_key.txt"),is 
 the mytrace module is used for data collecion. And a file named "trace" should be created first under the  path of ns-allinone-3.26/ns-3.26/  
 
 the razor project is a c version of GCC release at https://github.com/yuanrongxi/razor. And I make some minor modification to get it running on ns3. Thanks to the author's contributions.  
+To run GCC congestion control algorithm, it depends on external library from webrtc and these files(home-zsy-webrtc-ns3/webrtc) should be put on the right path. Then configure the environemnt variables, for example:  
+```
+sudo su  
+gedit /etc/profile  
+```
+add the following to /etc/profile, the path to  "home-zsy-webrtc-ns3/webrtc" in my comouter is "/home/zsy/webrtc-ns3/webrtc".  
+Change them all with where you put this file.  
+```
+export LD_LIBRARY_PATH=/home/zsy/webrtc-ns3/webrtc/system_wrappers:/home/zsy/webrtc-ns3/webrtc/rtc_base:/home/zsy/webrtc-ns3/webrtc/api:/home/zsy/webrtc-ns3/webrtc/logging:/home/zsy/webrtc-ns3/webrtc/modules/utility:/home/zsy/webrtc-ns3/webrtc/modules/pacing:/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller:/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller:/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator:/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp:$LD_LIBRARY_PATH  
+export CPLUS_INCLUDE_PATH=CPLUS_INCLUDE_PATH:/home/zsy/webrtc-ns3/webrtc/system_wrappers:/home/zsy/webrtc-ns3/webrtc/rtc_base:/home/zsy/webrtc-ns3/webrtc/api:/home/zsy/webrtc-ns3/webrtc/logging:/home/zsy/webrtc-ns3/webrtc/modules/utility:/home/zsy/webrtc-ns3/webrtc/modules/pacing:/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller:/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller:/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator:/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp  
+```
+
 
 In simulation(razor-example/gcc_tcp.cc), a point to point channel was created. From the time of 20s to 100s, A reno TCP connection flows into the network. The first picture shows the kalman-gcc cannot complete fair bandiwdth share with tcp flow.  
 
@@ -29,5 +41,7 @@ owe way transmission delay:
 
 The command to get webrtc-tcp running:  
 ```
+sudo su
+source /etc/profile
 ./waf --run "scratch/webrtc-tcp --it=1"
 ```
