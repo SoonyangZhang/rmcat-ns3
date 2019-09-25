@@ -16,16 +16,23 @@ sudo su
 gedit /etc/profile  
 ```
 add the following to /etc/profile, the path to  "home-zsy-webrtc-ns3/webrtc" in my comouter is "/home/zsy/webrtc-ns3/webrtc".  
-Change them all with where you put this file.  
+Change them all with where you put these files.  
 ```
 export LD_LIBRARY_PATH=/home/zsy/webrtc-ns3/webrtc/system_wrappers:/home/zsy/webrtc-ns3/webrtc/rtc_base:/home/zsy/webrtc-ns3/webrtc/api:/home/zsy/webrtc-ns3/webrtc/logging:/home/zsy/webrtc-ns3/webrtc/modules/utility:/home/zsy/webrtc-ns3/webrtc/modules/pacing:/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller:/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller:/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator:/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp:$LD_LIBRARY_PATH  
-export CPLUS_INCLUDE_PATH=CPLUS_INCLUDE_PATH:/home/zsy/webrtc-ns3/webrtc/system_wrappers:/home/zsy/webrtc-ns3/webrtc/rtc_base:/home/zsy/webrtc-ns3/webrtc/api:/home/zsy/webrtc-ns3/webrtc/logging:/home/zsy/webrtc-ns3/webrtc/modules/utility:/home/zsy/webrtc-ns3/webrtc/modules/pacing:/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller:/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller:/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator:/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp  
+export CPLUS_INCLUDE_PATH=CPLUS_INCLUDE_PATH:/home/zsy/webrtc-ns3/webrtc/:/home/zsy/webrtc-ns3/webrtc/system_wrappers:/home/zsy/webrtc-ns3/webrtc/rtc_base:/home/zsy/webrtc-ns3/webrtc/api:/home/zsy/webrtc-ns3/webrtc/logging:/home/zsy/webrtc-ns3/webrtc/modules/utility:/home/zsy/webrtc-ns3/webrtc/modules/pacing:/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller:/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller:/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator:/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp  
 ```
-
+and the path about the headers and so libs in wscript(under webrtc-ns3) should also be changed accordingly:  
+```
+  conf.env.append_value('INCLUDES', ['/home/zsy/webrtc-ns3/webrtc/'])
+  conf.env.append_value("LINKFLAGS", ['-L/home/zsy/webrtc-ns3/webrtc/system_wrappers','-L/home/zsy/webrtc-ns3/webrtc/rtc_base','-L/home/zsy/webrtc-ns3/webrtc/api','-L/home/zsy/webrtc-ns3/webrtc/logging','-L/home/zsy/webrtc-ns3/webrtc/modules/utility','-L/home/zsy/webrtc-ns3/webrtc/modules/pacing','-L/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller','-L/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller','-L/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator','-L/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp'])
+```
+And the webrtc-ns3 module depends on multipathvideo, and multipathvideo should be put under src in ns3.  
+Location:  
+![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/webrtc-results/location.png)  
 
 In simulation(razor-example/gcc_tcp.cc), a point to point channel was created. From the time of 20s to 100s, A reno TCP connection flows into the network. The first picture shows the kalman-gcc cannot complete fair bandiwdth share with tcp flow.  
 
-![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/razor-example/gcc_razor_0remb.png)
+![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/razor-example/gcc_razor_0remb.png)  
 ![image](https://github.com/sonyangchang/rmcat-ns3/blob/master/razor-example/gcc_razor_1remb.png)  
 If you quite interesting in this simualation, and think the above instrcution is quite complex, you could email me for the VM during the experiment.  
 some simualtion example of GCC algorithms:  
@@ -41,7 +48,7 @@ owe way transmission delay:
 
 The command to get webrtc-tcp running:  
 ```
-sudo su
-source /etc/profile
-./waf --run "scratch/webrtc-tcp --it=1"
+sudo su  
+source /etc/profile  
+./waf --run "scratch/webrtc-tcp --it=1"  
 ```

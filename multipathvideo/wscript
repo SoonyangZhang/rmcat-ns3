@@ -1,0 +1,22 @@
+## -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+def build(bld):
+    mp= bld.create_ns3_module('multipathvideo', ['core','network','internet'])
+    mp.source = [
+	'model/mpcommon.cc',
+        #'model/mpreceiver.cc',
+        #'model/recvpath.cc',
+        #'model/razor_header.cc',
+        #'model/path.cc', 
+        #'model/mpsender.cc',		
+	]
+    headers = bld(features='ns3header')
+    headers.module = 'multipathvideo'
+    headers.source = [
+	'model/mpcommon.h',
+        #'model/mpreceiver.h',
+        #'model/recvpath.h',
+        #'model/razor_header.h',
+        #'model/path.h', 
+        #'model/mpsender.h',	
+	]
