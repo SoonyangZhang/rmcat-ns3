@@ -12,6 +12,8 @@ the mytrace module is used for data collecion. And a file named "trace" should b
 the razor project is a c version of GCC release at https://github.com/yuanrongxi/razor. And I make some minor modification to get it running on ns3. Thanks to the author's contributions.  
 <h3 style="color:#ff0000">Must running tips</h3>  
 <h3 style="color:#ff0000">Or else the compiler will runnng into errer like: cannot find -lrtc_base... </h3>  
+
+
 To run GCC congestion control algorithm, it depends on external library from webrtc and these files(webrtc-lib/webrtc) should be built first (The folder webrtc-lib can be put anywhere, for example /home/xxx/webrtc-lib).  
 ```
 cd /home/xxx/webrtc-lib/webrtc/  
