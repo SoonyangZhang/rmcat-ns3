@@ -10,21 +10,29 @@ the code in screamex.cc sendApp->SetTraceFilePath("/you_path/trace_key.txt"),is 
 the mytrace module is used for data collecion. And a file named "trace" should be created first under the  path of ns-allinone-3.26/ns-3.26/  
 
 the razor project is a c version of GCC release at https://github.com/yuanrongxi/razor. And I make some minor modification to get it running on ns3. Thanks to the author's contributions.  
-To run GCC congestion control algorithm, it depends on external library from webrtc and these files(home-zsy-webrtc-ns3/webrtc) should be put on the right path. Then configure the environemnt variables, for example:  
+<font color='red'> Must running tips </font>  
+<font color='red'>Or else the compiler will runnng into errer like: cannot find -lrtc_base... </font>  
+To run GCC congestion control algorithm, it depends on external library from webrtc and these files(webrtc-lib/webrtc) should be built first (The folder webrtc-lib can be put anywhere, for example /home/xxx/webrtc-lib).  
+```
+cd /home/xxx/webrtc-lib/webrtc/  
+cmake .  
+make  
+```
+Then configure the environemnt variables:  
 ```
 sudo su  
 gedit /etc/profile  
 ```
-add the following to /etc/profile, the path to  "home-zsy-webrtc-ns3/webrtc" in my comouter is "/home/zsy/webrtc-ns3/webrtc".  
-Change them all with where you put these files.  
+add the following to /etc/profile:  
 ```
-export LD_LIBRARY_PATH=/home/zsy/webrtc-ns3/webrtc/system_wrappers:/home/zsy/webrtc-ns3/webrtc/rtc_base:/home/zsy/webrtc-ns3/webrtc/api:/home/zsy/webrtc-ns3/webrtc/logging:/home/zsy/webrtc-ns3/webrtc/modules/utility:/home/zsy/webrtc-ns3/webrtc/modules/pacing:/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller:/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller:/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator:/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp:$LD_LIBRARY_PATH  
-export CPLUS_INCLUDE_PATH=CPLUS_INCLUDE_PATH:/home/zsy/webrtc-ns3/webrtc/:/home/zsy/webrtc-ns3/webrtc/system_wrappers:/home/zsy/webrtc-ns3/webrtc/rtc_base:/home/zsy/webrtc-ns3/webrtc/api:/home/zsy/webrtc-ns3/webrtc/logging:/home/zsy/webrtc-ns3/webrtc/modules/utility:/home/zsy/webrtc-ns3/webrtc/modules/pacing:/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller:/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller:/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator:/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp  
+export WEBRTC_LIB=/home/xxx/webrtc-lib  
+export LD_LIBRARY_PATH=$WEBRTC_LIB/webrtc/system_wrappers:$WEBRTC_LIB/webrtc/rtc_base:$WEBRTC_LIB/webrtc/api:$WEBRTC_LIB/webrtc/logging:$WEBRTC_LIB/webrtc/modules/utility:$WEBRTC_LIB/webrtc/modules/pacing:$WEBRTC_LIB/webrtc/modules/congestion_controller:$WEBRTC_LIB/webrtc/modules/bitrate_controller:$WEBRTC_LIB/webrtc/modules/remote_bitrate_estimator:$WEBRTC_LIB/webrtc/modules/rtp_rtcp:$LD_LIBRARY_PATH  
+export CPLUS_INCLUDE_PATH=CPLUS_INCLUDE_PATH:$WEBRTC_LIB/webrtc/:$WEBRTC_LIB/webrtc/system_wrappers:$WEBRTC_LIB/webrtc/rtc_base:$WEBRTC_LIB/webrtc/api:$WEBRTC_LIB/webrtc/logging:$WEBRTC_LIB/webrtc/modules/utility:$WEBRTC_LIB/webrtc/modules/pacing:$WEBRTC_LIB/webrtc/modules/congestion_controller:$WEBRTC_LIB/webrtc/modules/bitrate_controller:$WEBRTC_LIB/webrtc/modules/remote_bitrate_estimator:$WEBRTC_LIB/webrtc/modules/rtp_rtcp  
 ```
-and the path about the headers and so libs in wscript(under webrtc-ns3) should also be changed accordingly:  
+The path about the headers and so libs in wscript(under webrtc-ns3) should also be changed accordingly:  
 ```
-  conf.env.append_value('INCLUDES', ['/home/zsy/webrtc-ns3/webrtc/'])
-  conf.env.append_value("LINKFLAGS", ['-L/home/zsy/webrtc-ns3/webrtc/system_wrappers','-L/home/zsy/webrtc-ns3/webrtc/rtc_base','-L/home/zsy/webrtc-ns3/webrtc/api','-L/home/zsy/webrtc-ns3/webrtc/logging','-L/home/zsy/webrtc-ns3/webrtc/modules/utility','-L/home/zsy/webrtc-ns3/webrtc/modules/pacing','-L/home/zsy/webrtc-ns3/webrtc/modules/congestion_controller','-L/home/zsy/webrtc-ns3/webrtc/modules/bitrate_controller','-L/home/zsy/webrtc-ns3/webrtc/modules/remote_bitrate_estimator','-L/home/zsy/webrtc-ns3/webrtc/modules/rtp_rtcp'])
+  conf.env.append_value('INCLUDES', ['/home/xxx/webrtc-ns3/webrtc/'])
+  conf.env.append_value("LINKFLAGS", ['-L/home/xxx/webrtc-ns3/webrtc/system_wrappers','-L/home/xxx/webrtc-ns3/webrtc/rtc_base','-L/home/xxx/webrtc-ns3/webrtc/api','-L/home/xxx/webrtc-ns3/webrtc/logging','-L/home/xxx/webrtc-ns3/webrtc/modules/utility','-L/home/xxx/webrtc-ns3/webrtc/modules/pacing','-L/home/xxx/webrtc-ns3/webrtc/modules/congestion_controller','-L/home/xxx/webrtc-ns3/webrtc/modules/bitrate_controller','-L/home/xxx/webrtc-ns3/webrtc/modules/remote_bitrate_estimator','-L/home/xxx/webrtc-ns3/webrtc/modules/rtp_rtcp'])
 ```
 And the webrtc-ns3 module depends on multipathvideo, and multipathvideo should be put under src in ns3.  
 Location:  
